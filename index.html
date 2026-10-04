@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<!--
+================================================================
+  合同会社災害保険調査機構 ブランドサイト デザイン案
+  コンセプト：「測る、という誠実。」
+  ・社名の「調査」から着想。災害調査の現場で使われる
+    「記録黒板」と「クラックスケール（亀裂を測る定規）」をモチーフに、
+    被害を正確に測り、記録し、言葉にする会社として表現。
+  ・配色：黒板の深緑／チョークの白／計測スケールの黄
+  ・デプロイ：Cloudflare Pages（Direct Upload）にこの index.html を
+    そのままアップロードしてください。ビルド設定は不要です。
+  ・外部依存：Google Fonts／Unsplash画像（読込失敗時は背景色で代替表示）
+
+  ■ 公開前の確認事項チェックリスト
+  [ ] 1. 事業内容の正式な範囲（調査・資料作成・補償内容の確認・防災診断のうち、どこまで行うか）
+  [ ] 2. 保険会社との交渉・示談の代理は行わない前提で文言を作成しています。
+         弁護士法第72条（非弁行為）に抵触しない表現か、専門家の確認を推奨します。
+  [ ] 3. 保険商品の募集・販売を行う場合は保険業法上の代理店登録が必要です。行わない場合はその旨の明記を推奨します。
+  [ ] 4. 訪問による勧誘・契約を行う場合、特定商取引法（訪問販売）の書面交付・クーリングオフ等への対応が必要です。
+  [ ] 5. 「保険金で修理ができる」等の表現は消費者トラブル注意喚起の対象となりやすいため使用していません。報酬体系（成功報酬の有無・料率）の掲載方針をご確認ください。
+  [ ] 6. 損害保険登録鑑定人・建築士等の保有資格があれば掲載可能です（有無の確認）。
+  [ ] 7. 社名に「機構」を含むため、公的機関と誤認されないよう「民間企業である」旨の表記をフッターに入れています。表現をご確認ください。
+  [ ] 8. 対応している災害の種類（風災・雹災・雪災・水災・落雷・地震）
+  [ ] 9. 対応エリア（未記載）
+  [ ] 10. 設立年月日・資本金・従業員数（未確認のため会社概要では非表示）
+  [ ] 11. 代表者の肩書き（合同会社のため「代表社員」としています）
+  [ ] 12. 代表メッセージは草案です。代表者ご本人の確認・修正が必要です。
+  [ ] 13. 画像はUnsplashのフリー素材（仮）です。自社撮影の現場写真への差し替えを推奨します。
+================================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>合同会社災害保険調査機構｜被害を、正しく測る。</title>
+<meta name="description" content="合同会社災害保険調査機構は、自然災害による建物被害の調査・記録と、火災保険・地震保険に関するコンサルティングを行う会社です。">
+<meta name="theme-color" content="#1c2823">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231c2823'/%3E%3Cpath d='M6 8 L13 15 L11 19 L18 25' stroke='%23ebe9e2' stroke-width='2' fill='none'/%3E%3Cpath d='M24 6v20M24 9h3M24 13h2M24 17h3M24 21h2' stroke='%23d8b64b' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --board:#1c2823;        /* 記録黒板 */
+  --board-deep:#131c18;   /* 黒板の影 */
+  --board-line:#34443d;   /* 黒板の罫 */
+  --chalk:#ebe9e2;        /* チョーク白 */
+  --chalk-dim:#a3aca6;    /* 消し跡のチョーク */
+  --scale:#d8b64b;        /* 計測スケールの黄 */
+  --paper:#e3e6e2;        /* 調査票の紙 */
+  --ink:#1f2622;          /* 調査票の文字 */
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --pad:clamp(20px,5vw,72px);
+  --header-h:72px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + env(safe-area-inset-top,0px))}
+body{
+  margin:0;background:var(--board);color:var(--chalk);
+  font-family:var(--sans);font-size:16px;line-height:1.9;letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;word-break:auto-phrase;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+p,li,dd{text-wrap:pretty}
+.nw{display:inline-block}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--scale);outline-offset:4px}
+.skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--scale);color:var(--board-deep);padding:10px 16px;text-decoration:none;font-weight:700}
+.skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  padding-top:env(safe-area-inset-top,0px);
+  transition:background .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+.site-header.is-scrolled{background:rgba(19,28,24,.92);backdrop-filter:blur(8px);border-color:var(--board-line)}
+.header-inner{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo svg{width:30px;height:30px;flex:none}
+.logo-text{display:flex;flex-direction:column;line-height:1.3}
+.logo-text small{font-size:10px;color:var(--chalk-dim);letter-spacing:.12em}
+.logo-text span{font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.12em}
+.gnav ul{list-style:none;margin:0;padding:0;display:flex;gap:28px}
+.gnav a{text-decoration:none;font-size:13px;letter-spacing:.12em;position:relative;padding:6px 0}
+.gnav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--scale);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.gnav a:hover::after,.gnav a:focus-visible::after{transform:scaleX(1)}
+.menu-btn{display:none;background:none;border:0;color:var(--chalk);width:44px;height:44px;cursor:pointer;position:relative}
+.menu-btn span{position:absolute;left:10px;right:10px;height:1.5px;background:currentColor;transition:transform .3s,opacity .3s}
+.menu-btn span:nth-child(1){top:16px}.menu-btn span:nth-child(2){top:22px}.menu-btn span:nth-child(3){top:28px}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+@media (max-width:900px){
+  .menu-btn{display:block}
+  .gnav{
+    position:fixed;inset:0;z-index:-1;background:var(--board-deep);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;
+  }
+  .gnav.is-open{opacity:1;visibility:visible}
+  .gnav ul{flex-direction:column;gap:26px;text-align:center}
+  .gnav a{font-family:var(--serif);font-size:20px}
+}
+
+/* ---------- Scroll rail : クラックスケール ---------- */
+.rail{
+  position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:90;
+  height:56vh;width:26px;pointer-events:none;
+}
+.rail-track{
+  position:absolute;right:0;top:0;bottom:0;width:10px;
+  background:
+    repeating-linear-gradient(to bottom,var(--chalk-dim) 0 1px,transparent 1px 6px),
+    repeating-linear-gradient(to bottom,var(--chalk) 0 1px,transparent 1px 30px);
+  background-size:6px 100%,10px 100%;background-repeat:no-repeat;background-position:right top,right top;
+  opacity:.55;
+}
+.rail-fill{position:absolute;right:12px;top:0;width:2px;height:0;background:var(--scale)}
+.rail-read{
+  position:absolute;right:16px;top:0;transform:translateY(-50%);
+  font-family:var(--mono);font-size:10px;color:var(--scale);white-space:nowrap;
+  writing-mode:vertical-rl;letter-spacing:.08em;
+}
+@media (max-width:900px){.rail{right:6px;width:14px}.rail-read{display:none}.rail-fill{right:12px}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;background:var(--board-deep)}
+.hero-bg{position:absolute;inset:0;background:#1a2520 center/cover no-repeat;opacity:.22;filter:grayscale(1) contrast(1.1)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,transparent 0,var(--board-deep) 85%);pointer-events:none}
+#crack{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.hero-inner{
+  position:relative;z-index:2;min-height:100vh;min-height:100svh;
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;
+  padding:calc(var(--header-h) + 40px) calc(var(--pad) + 30px) 60px var(--pad);
+}
+.hero-copy{grid-column:2;grid-row:1;writing-mode:vertical-rl;display:flex;gap:2.2em}
+.hero-copy h1{
+  margin:0;font-family:var(--serif);font-weight:700;
+  font-size:clamp(40px,5.6vw,76px);letter-spacing:.24em;line-height:1.45;
+}
+.hero-copy p{margin:0;font-size:15px;letter-spacing:.3em;color:var(--chalk-dim);padding-top:5em;line-height:2.4}
+
+/* 記録黒板 */
+.board{
+  grid-column:1;grid-row:1;align-self:end;justify-self:start;
+  width:min(380px,100%);background:#253630;
+  border:6px solid #5a4a36;box-shadow:inset 0 0 40px rgba(0,0,0,.45),0 18px 40px rgba(0,0,0,.4);
+  font-size:13px;color:var(--chalk);
+}
+.board dl{margin:0;display:grid;grid-template-columns:5.5em 1fr}
+.board dt,.board dd{margin:0;padding:9px 12px;border-bottom:1px solid rgba(235,233,226,.28)}
+.board dt{border-right:1px solid rgba(235,233,226,.28);color:var(--chalk-dim);letter-spacing:.2em}
+.board dd{font-family:var(--serif);letter-spacing:.08em}
+.board dl > :nth-last-child(-n+2){border-bottom:0}
+.board .mono{font-family:var(--mono);letter-spacing:.04em}
+
+@media (max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:calc(var(--header-h) + 48px) var(--pad) 48px}
+  .hero-copy{grid-column:1;writing-mode:horizontal-tb;flex-direction:column;gap:1.4em}
+  .hero-copy h1{font-size:clamp(34px,9vw,48px);letter-spacing:.1em}
+  .hero-copy p{padding-top:0;letter-spacing:.12em;line-height:2}
+  .board{grid-column:1;grid-row:2;margin-top:28px}
+}
+
+/* ---------- Section common ---------- */
+main > section{position:relative}
+.section{padding:clamp(96px,14vw,180px) var(--pad)}
+.wrap{max-width:1180px;margin:0 auto}
+.h2{font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:.14em;line-height:1.6;margin:0 0 .4em}
+.h2-sub{font-size:13px;color:var(--chalk-dim);letter-spacing:.2em;margin:0 0 3em}
+.lead{font-family:var(--serif);font-size:clamp(17px,1.6vw,20px);line-height:2.3;letter-spacing:.1em;max-width:34em}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 1s ease,transform 1s ease}
+.reveal.is-in{opacity:1;transform:none}
+
+/* ---------- About ---------- */
+.about .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
+.about-photo{position:relative;aspect-ratio:4/5;background:#2a3833 center/cover no-repeat}
+.about-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.55) contrast(1.05)}
+.measure{position:absolute;left:-14px;top:12%;bottom:12%;width:10px;border-left:1px solid var(--scale)}
+.measure::before,.measure::after{content:"";position:absolute;left:-1px;width:10px;height:1px;background:var(--scale)}
+.measure::before{top:0}.measure::after{bottom:0}
+.measure span{position:absolute;left:-10px;top:50%;transform:translate(-100%,-50%);writing-mode:vertical-rl;font-family:var(--mono);font-size:10px;color:var(--scale);letter-spacing:.1em}
+.about-text p{color:var(--chalk-dim);max-width:30em}
+@media (max-width:900px){.about .wrap{grid-template-columns:1fr}.about-photo{aspect-ratio:4/3;margin-left:14px}}
+
+/* ---------- Service ---------- */
+.service{background:var(--board-deep)}
+.service-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--board-line)}
+.service-item{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);padding:clamp(32px,4vw,52px) 0;border-bottom:1px solid var(--board-line);align-items:start}
+.service-item h3{margin:0;font-family:var(--serif);font-size:clamp(20px,2vw,24px);letter-spacing:.12em;line-height:1.6}
+.service-item p{margin:0;color:var(--chalk-dim)}
+.service-item ul{margin:0;padding:0;list-style:none;font-size:14px}
+.service-item ul li{padding-left:1.4em;position:relative;line-height:2}
+.service-item ul li::before{content:"";position:absolute;left:0;top:.95em;width:.8em;height:1px;background:var(--scale)}
+@media (max-width:900px){.service-item{grid-template-columns:1fr;gap:14px}}
+
+.hazards{margin-top:clamp(72px,9vw,120px)}
+.hazards h3{font-family:var(--serif);font-size:20px;letter-spacing:.14em;margin:0 0 .6em}
+.hazards > p{color:var(--chalk-dim);margin:0 0 2.4em;font-size:14px}
+.hazard-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--board-line)}
+.hazard-grid li{padding:28px 14px 22px;text-align:center;border-right:1px solid var(--board-line)}
+.hazard-grid li:last-child{border-right:0}
+.hazard-grid svg{width:44px;height:44px;margin:0 auto 14px;stroke:var(--chalk);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.hazard-grid b{display:block;font-family:var(--serif);font-weight:700;letter-spacing:.16em;font-size:17px}
+.hazard-grid small{display:block;color:var(--chalk-dim);font-size:12px;letter-spacing:.06em;margin-top:4px}
+@media (max-width:900px){.hazard-grid{grid-template-columns:repeat(3,1fr)}.hazard-grid li:nth-child(3n){border-right:0}.hazard-grid li:nth-child(-n+3){border-bottom:1px solid var(--board-line)}}
+@media (max-width:480px){.hazard-grid{grid-template-columns:repeat(2,1fr)}.hazard-grid li{border-bottom:1px solid var(--board-line)}.hazard-grid li:nth-child(3n){border-right:1px solid var(--board-line)}.hazard-grid li:nth-child(2n){border-right:0}.hazard-grid li:nth-last-child(-n+2){border-bottom:0}}
+
+/* ---------- Image band ---------- */
+.band{height:clamp(280px,48vw,560px);background:#22302a center/cover no-repeat;position:relative}
+.band img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6) brightness(.8)}
+.band figcaption{position:absolute;right:var(--pad);bottom:20px;font-size:12px;color:var(--chalk);letter-spacing:.12em;background:rgba(19,28,24,.7);padding:6px 12px}
+
+/* ---------- Flow ---------- */
+.flow-track{position:relative}
+.flow-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;counter-reset:step}
+.flow-tape{position:absolute;left:0;right:0;top:0;height:22px;pointer-events:none}
+.flow-tape i{position:absolute;left:0;top:0;height:100%;width:0;
+  background:
+    repeating-linear-gradient(to right,var(--board-deep) 0 1px,transparent 1px 8px) bottom/100% 7px no-repeat,
+    repeating-linear-gradient(to right,var(--board-deep) 0 1.5px,transparent 1.5px 40px) bottom/100% 13px no-repeat,
+    var(--scale);
+  transition:width 2.4s cubic-bezier(.6,0,.2,1)}
+.flow.is-in .flow-tape i{width:100%}
+.flow-steps li{padding:62px 22px 0 0;position:relative}
+.flow-steps li::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  display:block;font-family:var(--mono);font-size:13px;color:var(--scale);letter-spacing:.1em;margin-bottom:12px;
+}
+.flow-steps h3{margin:0 0 .5em;font-family:var(--serif);font-size:19px;letter-spacing:.12em;line-height:1.6}
+.flow-steps p{margin:0;font-size:14px;color:var(--chalk-dim);line-height:1.95}
+@media (max-width:900px){
+  .flow-steps{grid-template-columns:1fr;padding-left:44px}
+  .flow-tape{left:0;top:0;bottom:0;right:auto;width:22px;height:auto}
+  .flow-tape i{width:100%;height:0;
+    background:
+      repeating-linear-gradient(to bottom,var(--board-deep) 0 1px,transparent 1px 8px) right/7px 100% no-repeat,
+      repeating-linear-gradient(to bottom,var(--board-deep) 0 1.5px,transparent 1.5px 40px) right/13px 100% no-repeat,
+      var(--scale);
+    transition:height 2.4s cubic-bezier(.6,0,.2,1)}
+  .flow.is-in .flow-tape i{width:100%;height:100%}
+  .flow-steps li{padding:0 0 40px 0}
+}
+
+/* ---------- Stance (調査票) ---------- */
+.stance{background:var(--paper);color:var(--ink)}
+.stance .h2-sub{color:#5d6660}
+.stance-sheet{border:1.5px solid var(--ink)}
+.stance-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);border-bottom:1px solid #9aa39d}
+.stance-row:last-child{border-bottom:0}
+.stance-row h3{margin:0;padding:32px 28px;font-family:var(--serif);font-size:clamp(19px,2vw,23px);letter-spacing:.12em;line-height:1.6;border-right:1px solid #9aa39d}
+.stance-row p{margin:0;padding:32px 28px;color:#3b443f}
+@media (max-width:760px){.stance-row{grid-template-columns:1fr}.stance-row h3{border-right:0;padding-bottom:0}.stance-row p{padding-top:12px}}
+
+/* ---------- Message ---------- */
+.message{overflow:hidden}
+.message .wrap{display:flex;justify-content:center}
+.message-body{writing-mode:vertical-rl;max-height:36em;font-family:var(--serif);font-size:17px;line-height:2.5;letter-spacing:.14em}
+.message-body h2{font-size:clamp(26px,2.8vw,36px);margin:0 0 0 1.6em;letter-spacing:.2em;line-height:1.6}
+.message-body p{margin:0 0 0 1.2em}
+.message-body .sign{margin:0;padding-top:12em;font-size:15px;letter-spacing:.2em;color:var(--chalk-dim)}
+.message-body .sign strong{display:block;color:var(--chalk);font-size:22px;margin-right:.4em;letter-spacing:.3em}
+.message-scroll{overflow-x:auto;max-width:100%;direction:rtl;padding-bottom:12px}
+.message-scroll > *{direction:ltr}
+@media (max-width:900px){
+  .message-body{writing-mode:horizontal-tb;max-height:none;line-height:2.2;letter-spacing:.08em}
+  .message-body h2{margin:0 0 1.2em}
+  .message-body p{margin:0 0 1.4em}
+  .message-body .sign{padding-top:1.2em;text-align:right}
+  .message-scroll{direction:ltr}
+}
+
+/* ---------- Company ---------- */
+.company{background:var(--board-deep)}
+.company .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(32px,6vw,90px)}
+.profile{margin:0;border-top:1px solid var(--board-line)}
+.profile > div{display:grid;grid-template-columns:8em 1fr;border-bottom:1px solid var(--board-line)}
+.profile dt,.profile dd{margin:0;padding:22px 0}
+.profile dt{color:var(--chalk-dim);font-size:14px;letter-spacing:.16em}
+.profile dd{line-height:1.9}
+@media (max-width:760px){.company .wrap{grid-template-columns:1fr}.profile > div{grid-template-columns:1fr}.profile dt{padding-bottom:0}.profile dd{padding-top:6px}}
+
+/* ---------- Footer ---------- */
+.site-footer{padding:64px var(--pad) calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--board-line);font-size:12px;color:var(--chalk-dim)}
+.site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+.site-footer p{margin:0;letter-spacing:.08em}
+.footer-note{max-width:40em}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .reveal{opacity:1;transform:none}
+  .flow-tape i{width:100%}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="合同会社災害保険調査機構 トップへ">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" fill="none" stroke="#ebe9e2" stroke-width="1"/>
+        <path d="M6 7 L12 14 L10 18 L17 26" stroke="#ebe9e2" stroke-width="1.6" fill="none"/>
+        <path d="M24 5v22M24 8h3M24 12h2M24 16h3M24 20h2M24 24h3" stroke="#d8b64b" stroke-width="1.3"/>
+      </svg>
+      <span class="logo-text"><small>合同会社</small><span>災害保険調査機構</span></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="gnav" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="gnav" id="gnav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="#about">私たちについて</a></li>
+        <li><a href="#service">事業内容</a></li>
+        <li><a href="#flow">調査の流れ</a></li>
+        <li><a href="#stance">私たちの姿勢</a></li>
+        <li><a href="#message">代表挨拶</a></li>
+        <li><a href="#company">会社概要</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="rail" aria-hidden="true">
+  <div class="rail-track"></div>
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-read" id="railRead">000.0 mm</div>
+</div>
+
+<main id="main">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top" aria-label="メインビジュアル">
+    <!-- 要確認：仮画像（Unsplash／建物外壁）。自社の調査現場写真への差し替え推奨 -->
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=70')"></div>
+    <canvas id="crack" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1><span class="nw">被害を、</span><br><span class="nw">正しく測る。</span></h1>
+        <p><span class="nw">災害のあとに残る痕跡を</span><br><span class="nw">記録し、言葉にする。</span></p>
+      </div>
+      <div class="board" role="img" aria-label="調査記録板：件名 被害状況調査、調査者 合同会社災害保険調査機構">
+        <dl>
+          <dt>件名</dt><dd>被害状況調査</dd>
+          <dt>調査者</dt><dd>合同会社災害保険調査機構</dd>
+          <dt>対象</dt><dd>建物・付帯設備</dd>
+          <dt>記録日</dt><dd class="mono" id="boardDate">----.--.--</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="section about" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="about-photo reveal">
+        <!-- 要確認：仮画像（Unsplash／建物の点検）。差し替え推奨 -->
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1100&q=70" alt="建物を点検する調査員" loading="lazy" width="1100" height="1375" onerror="this.remove()">
+        <div class="measure" aria-hidden="true"><span>1 : 1</span></div>
+      </div>
+      <div class="about-text reveal">
+        <h2 class="h2" id="about-h"><span class="nw">見えにくい被害を、</span><br><span class="nw">見える記録に。</span></h2>
+        <p class="h2-sub">私たちについて</p>
+        <p class="lead">台風のあとの屋根、雪の重みを受けた雨どい、雹が打ちつけた外壁。</p>
+        <p>災害による建物の傷みは、住んでいる方ご自身では気づきにくく、気づいても「どこまでが災害によるものか」を説明するのは簡単ではありません。</p>
+        <p>合同会社災害保険調査機構は、被害の状況を現地で調べ、写真と数値で記録し、ご加入の保険の補償内容と照らし合わせて整理するコンサルティング会社です。大きく見せることも、小さく見積もることもせず、あるものを、あるとおりに。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Service ===== -->
+  <section class="section service" id="service" aria-labelledby="service-h">
+    <div class="wrap">
+      <h2 class="h2 reveal" id="service-h">事業内容</h2>
+      <p class="h2-sub reveal">災害調査と、保険に関するコンサルティング</p>
+
+      <!-- 要確認：事業範囲。保険会社との交渉代理は行わない前提の文言です（弁護士法72条） -->
+      <ul class="service-list">
+        <li class="service-item reveal">
+          <h3><span class="nw">被害状況の</span><span class="nw">調査・記録</span></h3>
+          <p>屋根・外壁・雨どい・付帯設備などを現地で確認し、損傷の位置と大きさを写真と計測値で記録します。</p>
+          <ul>
+            <li>目視・計測による現地調査</li>
+            <li>損傷箇所の写真記録</li>
+            <li>調査報告書の作成</li>
+          </ul>
+        </li>
+        <li class="service-item reveal">
+          <h3><span class="nw">保険の</span><span class="nw">補償内容の確認</span></h3>
+          <p>ご加入の火災保険・地震保険の契約内容を一緒に読み解き、今回の被害がどの補償に関わるのかを整理します。</p>
+          <ul>
+            <li>保険証券・約款の確認</li>
+            <li>補償対象となりうる範囲の整理</li>
+            <li>免責・対象外となる項目のご説明</li>
+          </ul>
+        </li>
+        <li class="service-item reveal">
+          <h3><span class="nw">請求手続きの</span><span class="nw">資料づくり</span></h3>
+          <p>お客様ご自身が保険会社へ請求される際に必要な資料を、わかりやすく整えるお手伝いをします。</p>
+          <!-- 要確認：請求の主体はお客様であり、代理請求・交渉は行わない旨の表現で問題ないか -->
+          <ul>
+            <li>提出用写真・図面の整理</li>
+            <li>被害状況説明書の作成支援</li>
+            <li>手続きの進め方のご案内</li>
+          </ul>
+        </li>
+        <li class="service-item reveal">
+          <h3><span class="nw">建物の</span><span class="nw">防災・リスク診断</span></h3>
+          <p>被害が起きる前に、建物の弱いところと補償の過不足を確かめます。法人・賃貸オーナーの方の複数物件にも対応します。</p>
+          <!-- 要確認：防災診断の提供有無、法人・オーナー向け対応の有無 -->
+          <ul>
+            <li>建物の劣化・弱点の点検</li>
+            <li>補償内容の過不足チェック</li>
+            <li>点検記録の定期作成</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="hazards reveal">
+        <h3>調査の対象となる主な災害</h3>
+        <p>自然災害による建物の損傷を中心に調査します。</p>
+        <!-- 要確認：対応する災害の種類。地震保険は火災保険と補償の考え方が異なるため、扱いの確認が必要 -->
+        <ul class="hazard-grid">
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M6 16h22a5 5 0 1 0-5-5"/><path d="M6 23h30a5 5 0 1 1-5 5"/><path d="M6 30h14"/></svg>
+            <b>風災</b><small>台風・強風・竜巻</small>
+          </li>
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M12 20a8 8 0 0 1 3-15 10 10 0 0 1 19 4 6 6 0 0 1-2 11z"/><circle cx="14" cy="28" r="2.2"/><circle cx="24" cy="33" r="2.2"/><circle cx="31" cy="26" r="2.2"/><circle cx="19" cy="38" r="1.8"/></svg>
+            <b>雹災</b><small>ひょうによる破損</small>
+          </li>
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 6v32M8 14l28 16M8 30l28-16"/><path d="M18 8l4 4 4-4M18 36l4-4 4 4"/></svg>
+            <b>雪災</b><small>積雪・落雪・雪崩</small>
+          </li>
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M4 22c4-3 8-3 12 0s8 3 12 0 8-3 12 0"/><path d="M4 30c4-3 8-3 12 0s8 3 12 0 8-3 12 0"/><path d="M4 38c4-3 8-3 12 0s8 3 12 0 8-3 12 0"/><path d="M22 4c-4 6-6 9-6 12a6 6 0 0 0 12 0c0-3-2-6-6-12z"/></svg>
+            <b>水災</b><small>浸水・土砂流入</small>
+          </li>
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M25 4L11 24h10l-4 16 16-22H22z"/></svg>
+            <b>落雷</b><small>設備・家電の損傷</small>
+          </li>
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M4 30h6l3-8 4 14 4-22 4 18 3-6h12"/><path d="M4 38h36"/></svg>
+            <b>地震</b><small>ひび割れ・傾き</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Image band ===== -->
+  <figure class="band" style="margin:0" aria-label="屋根の点検風景">
+    <!-- 要確認：仮画像（Unsplash／屋根・建築現場）。差し替え推奨 -->
+    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=70" alt="足場が組まれた建物の外観" loading="lazy" width="2000" height="1100" onerror="this.remove()">
+    <figcaption>記録は、現場でしか取れない。</figcaption>
+  </figure>
+
+  <!-- ===== Flow ===== -->
+  <section class="section flow" id="flow" aria-labelledby="flow-h">
+    <div class="wrap">
+      <h2 class="h2 reveal" id="flow-h">調査の流れ</h2>
+      <p class="h2-sub reveal">ご相談から報告書のお渡しまで</p>
+      <!-- 要確認：各工程の実際の内容・所要期間・費用発生のタイミング -->
+      <div class="flow-track">
+      <div class="flow-tape" aria-hidden="true"><i></i></div>
+      <ol class="flow-steps">
+        <li>
+          <h3>ご相談</h3>
+          <p>いつ、どのような災害があったか、気になる箇所はどこかをお聞きします。</p>
+        </li>
+        <li>
+          <h3>現地調査</h3>
+          <p>建物を外まわりから確認し、損傷の位置と大きさを計測します。</p>
+        </li>
+        <li>
+          <h3>記録と整理</h3>
+          <p>写真と数値を整理し、保険の補償内容と照らし合わせます。</p>
+        </li>
+        <li>
+          <h3>報告書のお渡し</h3>
+          <p>調査結果を報告書にまとめ、内容をご説明します。</p>
+        </li>
+        <li>
+          <h3>手続きのサポート</h3>
+          <p>ご自身で保険会社へ請求される際の資料づくりをお手伝いします。</p>
+        </li>
+      </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Stance ===== -->
+  <section class="section stance" id="stance" aria-labelledby="stance-h">
+    <div class="wrap">
+      <h2 class="h2 reveal" id="stance-h">私たちの姿勢</h2>
+      <p class="h2-sub reveal">調査を仕事にする者として、守ること</p>
+      <div class="stance-sheet reveal">
+        <div class="stance-row">
+          <h3>事実だけを記録する</h3>
+          <p>災害によるものか、経年による傷みか。判断がつかないものは、そのまま「判断がつかない」と記録します。</p>
+        </div>
+        <div class="stance-row">
+          <h3>過大な請求を勧めない</h3>
+          <p>実際の被害を超える請求は、お客様ご自身の不利益につながります。私たちは、事実に即した手続きだけをお手伝いします。</p>
+        </div>
+        <div class="stance-row">
+          <h3>決めるのはお客様</h3>
+          <p>請求するかどうか、修理をどこに頼むか。判断に必要な材料をお渡しし、決定はお客様に委ねます。</p>
+          <!-- 要確認：修理業者の紹介・提携の有無（ある場合は関係性の開示を推奨） -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Message ===== -->
+  <section class="section message" id="message" aria-labelledby="message-h">
+    <!-- 要確認：代表メッセージは草案です。田中様ご本人による確認・修正をお願いします -->
+    <div class="wrap message-scroll">
+      <div class="message-body reveal">
+        <h2 id="message-h">測ることは、<br>誠実であること。</h2>
+        <p>災害は、ある日突然、暮らしや事業の足もとを揺らします。</p>
+        <p>片づけに追われるなかで、屋根の小さなずれや外壁のひびは、つい後回しにされてしまいます。けれど、その小さな痕跡こそが、あとから状況を説明するための大切な手がかりになります。</p>
+        <p>私たちの仕事は、その手がかりを正確に測り、残すことです。多すぎず、少なすぎず、あるものをあるとおりに記録する。その誠実さが、お客様が納得して次の一歩を選ぶための土台になると考えています。</p>
+        <p>被害に向き合うすべての方にとって、頼れる記録係でありたい。そう願って、一件一件の調査に向き合ってまいります。</p>
+        <p class="sign">合同会社災害保険調査機構<br>代表社員<strong>田中 貴大</strong></p>
+        <!-- 要確認：肩書き（代表社員／代表）の表記 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Company ===== -->
+  <section class="section company" id="company" aria-labelledby="company-h">
+    <div class="wrap">
+      <div>
+        <h2 class="h2 reveal" id="company-h">会社概要</h2>
+      </div>
+      <dl class="profile reveal">
+        <div><dt>商号</dt><dd>合同会社災害保険調査機構</dd></div>
+        <div><dt>代表社員</dt><dd>田中 貴大</dd></div>
+        <div><dt>所在地</dt><dd>〒102-0074<br>東京都千代田区九段南1丁目5番6号</dd></div>
+        <!-- 要確認：建物名・部屋番号の有無 -->
+        <div><dt>事業内容</dt><dd>自然災害による建物被害の調査・記録<br>火災保険・地震保険に関するコンサルティング<br>建物の防災・リスク診断</dd></div>
+        <!-- 要確認：設立年月日（未確認のため非表示）
+        <div><dt>設立</dt><dd></dd></div> -->
+        <!-- 要確認：資本金（未確認のため非表示）
+        <div><dt>資本金</dt><dd></dd></div> -->
+        <!-- 要確認：保有資格（損害保険登録鑑定人・建築士等があれば掲載）
+        <div><dt>保有資格</dt><dd></dd></div> -->
+        <!-- 要確認：対応エリア
+        <div><dt>対応エリア</dt><dd></dd></div> -->
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-note">当社は民間の調査・コンサルティング会社であり、公的機関および保険会社とは関係ありません。保険商品の販売、保険会社との交渉の代理は行っておりません。</p>
+    <!-- 要確認：上記の表記内容（業務範囲に合わせて修正） -->
+    <p>&copy; <span id="year">2026</span> 合同会社災害保険調査機構</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 年・記録日 */
+  var now = new Date();
+  document.getElementById('year').textContent = now.getFullYear();
+  var pad = function(n){return (n<10?'0':'')+n;};
+  document.getElementById('boardDate').textContent = now.getFullYear()+'.'+pad(now.getMonth()+1)+'.'+pad(now.getDate());
+
+  /* ヘッダー */
+  var header = document.getElementById('header');
+  var railFill = document.getElementById('railFill');
+  var railRead = document.getElementById('railRead');
+  function onScroll(){
+    var y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 40);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    railFill.style.height = (p*100)+'%';
+    railRead.style.top = (p*100)+'%';
+    var mm = (p*300).toFixed(1);
+    while(mm.length < 5) mm = '0'+mm;
+    railRead.textContent = mm+' mm';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* メニュー */
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('gnav');
+  function setMenu(open){
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    nav.classList.toggle('is-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click', function(){ setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+  nav.addEventListener('click', function(e){ if(e.target.tagName === 'A') setMenu(false); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true'){ setMenu(false); btn.focus(); }
+  });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 900) setMenu(false); });
+
+  /* スクロール表示 */
+  var targets = document.querySelectorAll('.reveal, .flow');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, {threshold:.18, rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  } else {
+    targets.forEach(function(t){ t.classList.add('is-in'); });
+  }
+
+  /* ヒーロー：亀裂が走り、計測線が入る */
+  var cv = document.getElementById('crack');
+  var ctx = cv.getContext('2d');
+  var W, H, dpr, segs, marks, start, raf;
+
+  function rand(a,b){return a + Math.random()*(b-a);}
+
+  function build(){
+    segs = []; marks = [];
+    function grow(x, y, ang, len, width, depth, t0){
+      var t = t0;
+      for(var i=0;i<len;i++){
+        var step = rand(10,22);
+        var nx = x + Math.cos(ang)*step, ny = y + Math.sin(ang)*step;
+        segs.push({x1:x,y1:y,x2:nx,y2:ny,w:width,t:t});
+        if(depth === 0 && i % 9 === 5 && marks.length < 4){
+          marks.push({x:nx,y:ny,ang:ang,w:width,t:t});
+        }
+        x = nx; y = ny; t += step;
+        ang += rand(-.45,.45);
+        width *= .985;
+        if(depth < 2 && Math.random() < .07){
+          grow(x, y, ang + rand(.5,1.1)*(Math.random()<.5?-1:1), Math.floor(len*rand(.25,.45)), width*.55, depth+1, t);
+        }
+        if(x < -20 || x > W+20 || y < -20 || y > H+20) break;
+      }
+    }
+    var sx = W*rand(.52,.62), sy = -10;
+    grow(sx, sy, Math.PI/2 + rand(.25,.45), 90, Math.max(2.2, W/600), 0, 0);
+    grow(W*.05, H*rand(.55,.7), -rand(.05,.25), 40, 1.4, 1, 900);
+  }
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*dpr; cv.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    build();
+  }
+
+  function drawMark(m, a){
+    var nx = Math.cos(m.ang + Math.PI/2), ny = Math.sin(m.ang + Math.PI/2);
+    var L = 46;
+    var ex = m.x + nx*L, ey = m.y + ny*L;
+    ctx.strokeStyle = 'rgba(216,182,75,'+a+')';
+    ctx.fillStyle = 'rgba(216,182,75,'+a+')';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(m.x + nx*6, m.y + ny*6); ctx.lineTo(ex, ey); ctx.stroke();
+    ctx.beginPath(); ctx.arc(m.x, m.y, 4, 0, Math.PI*2); ctx.stroke();
+    var tx = ex + (nx >= 0 ? 8 : -8);
+    ctx.textAlign = nx >= 0 ? 'left' : 'right';
+    ctx.font = '11px "IBM Plex Mono", monospace';
+    ctx.fillText('w = '+(m.w*0.18).toFixed(2)+' mm', tx, ey + 4);
+  }
+
+  function frame(ts){
+    if(!start) start = ts;
+    var t = (ts - start) * 0.9;
+    ctx.clearRect(0,0,W,H);
+    ctx.lineCap = 'round';
+    for(var i=0;i<segs.length;i++){
+      var s = segs[i];
+      if(s.t > t) continue;
+      var k = Math.min(1, (t - s.t)/40);
+      ctx.strokeStyle = 'rgba(235,233,226,0.78)';
+      ctx.lineWidth = s.w;
+      ctx.beginPath();
+      ctx.moveTo(s.x1, s.y1);
+      ctx.lineTo(s.x1 + (s.x2-s.x1)*k, s.y1 + (s.y2-s.y1)*k);
+      ctx.stroke();
+    }
+    var done = true;
+    for(var j=0;j<marks.length;j++){
+      var m = marks[j], mt = m.t + 700;
+      if(t < mt){ done = false; continue; }
+      drawMark(m, Math.min(1,(t-mt)/500));
+      if(t - mt < 500) done = false;
+    }
+    if(segs.length && t < segs[segs.length-1].t + 200) done = false;
+    if(!done) raf = requestAnimationFrame(frame);
+  }
+
+  function drawStatic(){
+    ctx.clearRect(0,0,W,H);
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'rgba(235,233,226,0.78)';
+    segs.forEach(function(s){ ctx.lineWidth = s.w; ctx.beginPath(); ctx.moveTo(s.x1,s.y1); ctx.lineTo(s.x2,s.y2); ctx.stroke(); });
+    marks.forEach(function(m){ drawMark(m,1); });
+  }
+
+  function run(){
+    cancelAnimationFrame(raf); start = null; resize();
+    if(reduce){ drawStatic(); } else { raf = requestAnimationFrame(frame); }
+  }
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ if(Math.abs(cv.clientWidth - W) > 40) run(); }, 250);
+  });
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(run); } else { run(); }
+})();
+</script>
+</body>
+</html>
